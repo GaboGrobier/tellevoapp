@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button color="danger"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header >    
+  </ion-header>
+<ion-content>
+  <ion-card>
+    
+    <ion-item >
+      <ion-label position="floating"> Nombre de Usuario </ion-label>
+      <ion-input type="text" [(ngModel)]="user"  placeholder="Escriba su Nombre de usuario" ></ion-input>
+    </ion-item>
+    <ion-item >
+     <ion-label position="floating">Contraseña</ion-label>
+     <ion-input type="password" placeholder="Escriba Su contraseña"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+      <ion-button type="submit" (click)="bienvenida()" [routerLink]="['/dashboard']" color="dark" expand="block" fill="solid" shape="round">Iniciar Sesion </ion-button>
+      <a [routerLink]="['/recu-pass']" class="small-text">¿ Olvido su contraseña ?</a>
+    </ion-col>
+    </ion-row>
+
+</ion-card>
+</ion-content>
+
+</ion-content>
