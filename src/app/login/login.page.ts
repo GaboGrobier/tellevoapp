@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
 @Component({
@@ -9,9 +10,16 @@ import { ToastController } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
   user: string;
-  constructor(public toastController: ToastController) { }
+  constructor(public toastController: ToastController, private router:Router)  { }
+
   ngOnInit() {}
-  bienvenida(){
+
+  userdashboard(){
+    let navigationExtras:NavigationExtras={
+      state:{user: this.user}
+
+    };
+    this.router.navigate(['/dashboard'],navigationExtras);
     this.presentToast("bienvenido "+ this.user);
 
   }
