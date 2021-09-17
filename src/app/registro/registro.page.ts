@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registro',
@@ -7,7 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistroPage implements OnInit {
 
-  constructor() { }
+  constructor(public toastController: ToastController) { }
+
+
+  registro(){
+    this.presentToast()
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: "Registro Realizado",
+      duration: 2000
+    });
+    toast.present();
+  }
+
 
   ngOnInit() {
   }
