@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { AuthService } from '../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recu-pass',
@@ -7,14 +9,21 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./recu-pass.page.scss'],
 })
 export class RecuPassPage implements OnInit {
-  user:string;
+  email:string;
 
-  constructor(public toastController: ToastController) { }
+  constructor(public toastController: ToastController, private authsrv:AuthService, private router:Router ) { }
 
   ngOnInit() {
   }
-  EnviarCorreo(){
-    this.presentToast("Estimado "+ this.user + " correo electronico enviado , si no ha llegado revise la bandeja spam");
+ async EnviarCorreo(email){
+    try {
+      await this.authsrv.ResetPAssword(email.value);
+      this.router.navigate(['/home']);
+      this.presentToast("Estimado  correo electronico enviado, a " + this.email + "si no ha llegado revise la bandeja spam");
+    } catch (error) {console.log('Error ---> ', error)
+      
+    }
+   
   }
   
 async presentToast(msg:string) {

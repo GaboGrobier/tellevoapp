@@ -3,18 +3,18 @@
 <ion-content>
     <ion-card>
     <ion-item lines="full">
-      <ion-label position="floating">Nombre de usuario</ion-label>
-      <ion-input type="text" [(ngModel)]="user" required ></ion-input>
+      <ion-label position="floating">Correo electronico</ion-label>
+      <ion-input type="email" #email [(ngModel)]="email" required ></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" (click)="EnviarCorreo()" [routerLink]="['/home']" color="danger" expand="block">Enviar</ion-button>
+        <ion-button type="submit" (click)="EnviarCorreo(email)" [routerLink]="['/home']" color="danger" expand="block">Enviar</ion-button>
       </ion-col>
     </ion-row>
 
     <small>
-     Escriba su nombre de usuario de esta forma enviaremos una email de recuperacion si sus datos se encuentran en nuestra base de datos
+     Escriba su correo electronico para enviar un enlace para cambiar su contraseña 
     </small>
   </ion-card>
 </ion-content>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-registro',
@@ -8,11 +9,21 @@ import { ToastController } from '@ionic/angular';
 })
 export class RegistroPage implements OnInit {
 
-  constructor(public toastController: ToastController) { }
+  constructor(public toastController: ToastController, private authsrv:AuthService ) { }
 
 
-  registro(){
-    this.presentToast()
+  async registro(email, password){
+    try {
+      const user = await this.authsrv.register(email.value, password.value);
+      if (user){
+        //verificar usuario
+        console.log('user --->', user)
+      }
+      this.presentToast()
+    } catch (error) {console.log('Error ---> ',error)
+      
+    }
+   
   }
 
   async presentToast() {
