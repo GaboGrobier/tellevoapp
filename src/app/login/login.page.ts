@@ -6,6 +6,7 @@ import { user } from 'rxfire/auth';
 import { DashboardPage } from '../dashboard/dashboard.page';
 import { User } from '../shared/user.interface';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -59,7 +60,7 @@ async LoginGoogle (){
 private redirect_user(isVerified:boolean){
   if (isVerified == true) {
     this.router.navigate(['/dashboard']);
-    this.presentToast("bienvenido" + user)
+    this.presentToast("bienvenido")
     
   }else{
     this.router.navigate(['/login']);

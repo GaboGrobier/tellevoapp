@@ -3,6 +3,9 @@ import { waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { User } from '../shared/user.interface';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +15,7 @@ import { AlertController } from '@ionic/angular';
 
 export class DashboardPage implements OnInit {
   user: any;
-  constructor(private activeroute:ActivatedRoute, private router:Router, public loadingController:LoadingController,public alertController: AlertController) {
+  constructor(private activeroute:ActivatedRoute, private router:Router, public loadingController:LoadingController,public alertController: AlertController, private authsrv:AuthService) {
     this.activeroute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.user=this.router.getCurrentNavigation().extras.state.user;
@@ -51,8 +54,6 @@ export class DashboardPage implements OnInit {
    const { role, data } = await loading.onDidDismiss();
    this.presentAlert()
    return;
-
-    
   }
-
+  user$: Observable<User> = this.authsrv.afAuth.user;
 }

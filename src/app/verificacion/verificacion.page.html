@@ -1,0 +1,20 @@
+<ion-header>
+<app-header titulo=Verificacion ></app-header>>
+</ion-header>
+<ion-content **ngIf="user$ | async as user">
+
+  <ion-row>
+    <ion-col>
+      <h2>Gracias por Registrarte</h2>
+      <p>Hemos enviado un correo de confirmacion a <strong>{{user.email}}</strong></p>
+      <p>por favor revisa tu email y confirma tu registro con el link de confirmacion</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <button (click)="reverificacion()"> Volver a enviar verificacion </button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

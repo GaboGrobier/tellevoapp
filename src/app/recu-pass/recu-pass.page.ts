@@ -19,7 +19,7 @@ export class RecuPassPage implements OnInit {
     try {
       await this.authsrv.ResetPAssword(email.value);
       this.router.navigate(['/home']);
-      this.presentToast("Estimado  correo electronico enviado, a " + this.email + "si no ha llegado revise la bandeja spam");
+      this.presentToast("Estimado  correo electronico enviado, a  si no ha llegado revise la bandeja spam");
     } catch (error) {console.log('Error ---> ', error)
       
     }
