@@ -6,24 +6,17 @@
     
     <ion-item >
       <ion-label position="floating"> Nombre de Usuario </ion-label>
-      <ion-input type="text"  #email placeholder="Escriba su Nombre de usuario" ></ion-input>
+      <ion-input type="text" [(ngModel)]="user"  placeholder="Escriba su Nombre de usuario" ></ion-input>
     </ion-item>
     <ion-item >
      <ion-label position="floating">Contraseña</ion-label>
-     <ion-input type="password"  #password placeholder="Escriba Su contraseña"></ion-input>
+     <ion-input type="password" placeholder="Escriba Su contraseña"></ion-input>
     </ion-item>
     <ion-row>
       <ion-col>
-      <ion-button type="submit" (click)="userdashboard(email,password)" color="dark" expand="block" fill="solid" shape="round">Iniciar Sesion </ion-button>
-      <a [routerLink]="['/recu-pass']" >Recuperar contraseña </a>
+      <ion-button ri type="submit" (click)="userdashboard()" [routerLink]="['/dashboard']" color="dark" expand="block" fill="solid" shape="round">Iniciar Sesion </ion-button>
+      <a [routerLink]="['/recu-pass']" class="small-text">¿ Olvido su contraseña ?</a>
     </ion-col>
-    </ion-row>
-
-    <span class="divider line one-line"> or </span>
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" color="danger" (click)="LoginGoogle(email,password)" expand ="block">Login Con Google </ion-button>
-      </ion-col>
     </ion-row>
 </ion-card>
 </ion-content>
