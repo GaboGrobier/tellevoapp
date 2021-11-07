@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { ServiceService } from '../service/service.service';
 
 @Component({
   selector: 'app-registro',
@@ -8,11 +9,19 @@ import { ToastController } from '@ionic/angular';
 })
 export class RegistroPage implements OnInit {
 
-  constructor(public toastController: ToastController) { }
+  constructor(public toastController: ToastController, private database:ServiceService) { }
+
+  usuario={
+    nombre:"",
+    apellido:"",
+    email:"",
+    password:""
+  }
 
 
   registro(){
-    this.presentToast()
+    this.database.crearUsuario('usuarios', this.usuario);
+    
   }
 
   async presentToast() {

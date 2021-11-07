@@ -3,25 +3,25 @@
 
 
 <ion-content>
-  <form>
+  <ion-card>
     <ion-item lines="full">
-      <ion-label position="floating">Nombre </ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-label position="floating" >Nombre </ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.nombre" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" [(ngModel)]="usuario.apellido" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="floating">Correo Electronico</ion-label>
-      <ion-input type="email" required></ion-input>
+      <ion-label position="floating" >Correo Electronico</ion-label>
+      <ion-input type="email" [(ngModel)]="usuario.email" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-label position="floating"  >Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="usuario.password" required></ion-input>
     </ion-item>
 
     <ion-row>
@@ -29,5 +29,5 @@
         <ion-button  [routerLink]="['/home']" (click)="registro()" type="submit" color="danger" expand="block">Registrarse</ion-button>
       </ion-col>
     </ion-row>
-  </form>
+  </ion-card>
 </ion-content>
