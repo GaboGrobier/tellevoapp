@@ -4,12 +4,12 @@
     <ion-card>
     <ion-item lines="full">
       <ion-label position="floating">Nombre de usuario</ion-label>
-      <ion-input type="text" [(ngModel)]="user" required ></ion-input>
+      <ion-input type="text" #email required ></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" (click)="EnviarCorreo()" [routerLink]="['/home']" color="danger" expand="block">Enviar</ion-button>
+        <ion-button type="submit" (click)="EnviarCorreo(email)"  color="danger" expand="block">Enviar</ion-button>
       </ion-col>
     </ion-row>
 

@@ -6,28 +6,29 @@
   <ion-card>
     <ion-item lines="full">
       <ion-label position="floating" >Nombre </ion-label>
-      <ion-input type="text" [(ngModel)]="usuario.nombre" required></ion-input>
+      <ion-input type="text" [FormControlName]='nombre'  [(ngModel)]="usuarioDB.nombre" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" [(ngModel)]="usuario.apellido" required></ion-input>
+      <ion-input type="text" [FormControlName]='apellido'  [(ngModel)]="usuarioDB.apellido" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="floating" >Correo Electronico</ion-label>
-      <ion-input type="email" [(ngModel)]="usuario.email" required></ion-input>
+      <ion-label position="floating"  >Correo Electronico</ion-label>
+      <ion-input type="email" [FormControlName]='email' [(ngModel)]="usuarioDB.email" #email required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating"  >Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="usuario.password" required></ion-input>
+      <ion-input type="password" [FormControlName]='password'  [(ngModel)]="usuarioDB.password"  #password required></ion-input>
     </ion-item>
-
+    
     <ion-row>
       <ion-col>
-        <ion-button  [routerLink]="['/home']" (click)="registro()" type="submit" color="danger" expand="block">Registrarse</ion-button>
+        <ion-button  [routerLink]="['/home']"  (click)="authRegistro()"  type="submit" color="danger" expand="block">Registrarse</ion-button>
       </ion-col>
     </ion-row>
+
   </ion-card>
 </ion-content>

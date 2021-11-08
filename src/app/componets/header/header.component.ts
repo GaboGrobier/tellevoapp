@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ServiceService } from 'src/app/service/service.service';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Input() titulo: string;
 
-  constructor() { }
+  constructor(private database:ServiceService) { }
 
-  ngOnInit() {}
+  ngDestroy(){
+
+  }
+
+  ngOnInit(): void {
+    this.database.logout();
+  }
 
 }

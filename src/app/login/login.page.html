@@ -1,24 +1,31 @@
-<app-header titulo=Login ></app-header>
+<app-header titulo=Login></app-header>
 
 <ion-content [fullscreen]="true">
-<ion-content>
-  <ion-card>
-    
-    <ion-item >
-      <ion-label position="floating"> Nombre de Usuario </ion-label>
-      <ion-input type="text" [(ngModel)]="user"  placeholder="Escriba su Nombre de usuario" ></ion-input>
-    </ion-item>
-    <ion-item >
-     <ion-label position="floating">Contraseña</ion-label>
-     <ion-input type="password" placeholder="Escriba Su contraseña"></ion-input>
-    </ion-item>
-    <ion-row>
-      <ion-col>
-      <ion-button ri type="submit" (click)="userdashboard()" [routerLink]="['/dashboard']" color="dark" expand="block" fill="solid" shape="round">Iniciar Sesion </ion-button>
-      <a [routerLink]="['/recu-pass']" class="small-text">¿ Olvido su contraseña ?</a>
-    </ion-col>
-    </ion-row>
-</ion-card>
-</ion-content>
+  <ion-content>
+    <ion-card>
+
+      <ion-item>
+        <ion-label position="floating"> Correo Electronico </ion-label>
+        <ion-input type="text" [(ngModel)]="usuarioDB.email" #email placeholder="Escriba su Nombre de usuario">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="usuarioDB.password" #password placeholder="Escriba Su contraseña">
+        </ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button  type="submit" (click)="ingresar(this.usuarioDB.email,this.usuarioDB.password)"
+            color="dark" expand="block" fill="solid" shape="round">Iniciar Sesion
+          </ion-button>
+          <ion-button  type="submit" (click)="GoogleLogin(this.usuarioDB.email,this.usuarioDB.password)"
+             color="danger" expand="block" fill="solid" shape="round">Ingresar con Google 
+          </ion-button>
+          <a [routerLink]="['/recu-pass']" class="small-text">¿ Olvido su contraseña ?</a>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-content>
 
 </ion-content>
