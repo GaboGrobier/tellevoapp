@@ -15,6 +15,11 @@ export const environment = {
   production: true
 };
 
+export const googlemaps={
+  production: false,
+  mapsKey:'AIzaSyDNH-IsfCHFrTwDW8_MroKuMdD2LRb2LSw'
+}
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

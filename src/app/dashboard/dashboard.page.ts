@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { waitForAsync } from '@angular/core/testing';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 import { LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 
@@ -11,6 +11,7 @@ import { AlertController } from '@ionic/angular';
 })
 
 export class DashboardPage implements OnInit {
+  @ViewChild('map') mapView: ElementRef;
   user: any;
   constructor(private activeroute:ActivatedRoute, private router:Router, public loadingController:LoadingController,public alertController: AlertController) {
     this.activeroute.queryParams.subscribe(params => {
@@ -20,7 +21,32 @@ export class DashboardPage implements OnInit {
       }
     });
    }
+
+  ionViewDidEnter(){
+    this,this.createmap()
+
+  }
+  createmap(){
+    const boundingRect = this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
+    CapacitorGoogleMaps.create({
+      width: Math.round(boundingRect.width),
+      height: Math.round(boundingRect.width),
+      x: Math.round(boundingRect.x),
+      y:Math.round(boundingRect.y),
+      zoom:5,
+    });
+    CapacitorGoogleMaps.addListener('onMapReady',async () => {
+      CapacitorGoogleMaps.setMapType({
+        type:'normal'
+
+      })
+
+    })
+  }
   
+  
+
+
   ngOnInit() {
   }
   cargando(){

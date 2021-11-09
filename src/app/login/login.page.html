@@ -6,12 +6,12 @@
 
       <ion-item>
         <ion-label position="floating"> Correo Electronico </ion-label>
-        <ion-input type="text" [(ngModel)]="usuarioDB.email" #email placeholder="Escriba su Nombre de usuario">
+        <ion-input type="text" [FormControlName]='email' [(ngModel)]="usuarioDB.email" #email placeholder="Escriba su Nombre de usuario">
         </ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" [(ngModel)]="usuarioDB.password" #password placeholder="Escriba Su contraseña">
+        <ion-input type="password" [FormControlName]='password' [(ngModel)]="usuarioDB.password" #password placeholder="Escriba Su contraseña">
         </ion-input>
       </ion-item>
       <ion-row>

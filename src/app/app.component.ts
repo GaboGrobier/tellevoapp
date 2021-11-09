@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { LoginPage } from './login/login.page';
+import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
+import { googlemaps } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,11 @@ import { LoginPage } from './login/login.page';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+    CapacitorGoogleMaps.initialize({
+      key: googlemaps.mapsKey
+    });
+  }
+
+  
 }

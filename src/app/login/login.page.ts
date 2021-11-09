@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ServiceService } from '../service/service.service';
 
 @Component({
@@ -12,13 +12,18 @@ import { ServiceService } from '../service/service.service';
 export class LoginPage implements OnInit {
 
   user: string;
-  constructor(public toastController: ToastController, private router: Router,private database:ServiceService) { }
+  constructor(public toastController: ToastController, private router: Router, private database: ServiceService) { }
 
   ngOnInit() { }
 
-  usuarioDB={
-    email:"",
-    password:"",
+  usuario = new FormGroup({
+    email: new FormControl("", Validators.compose([Validators.email, Validators.required])),
+    password: new FormControl("", Validators.required)
+  });
+
+  usuarioDB = {
+    email: "",
+    password: "",
   }
   login() {
     let navigationExtras: NavigationExtras = {
@@ -38,22 +43,21 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
-    
-  async ingresar(email,password){
+  async ingresar(email, password) {
     try {
-      const user = await this.database.login(this.usuarioDB.email,this.usuarioDB.password);
-      if (user) {
-        const isverified = this.database.isEmailVerified(user);
-        this.redireccionUsuario(isverified);
-        
-      }
+      const user = await this.database.login(this.usuarioDB.email, this.usuarioDB.password);
+        if (user) {
+          const isverified = this.database.isEmailVerified(user);
+          this.redireccionUsuario(isverified);
+        }
+
     } catch (error) {
-      console.log('Error -->',error)
-      
+      console.log('Error -->', error)
+
     }
   };
 
-  async GoogleLogin(){
+  async GoogleLogin() {
     try {
       const user = await this.database.LoginGoogle();
       if (user) {
@@ -62,16 +66,16 @@ export class LoginPage implements OnInit {
       }
     } catch (error) {
       console.log('Error --->', error)
-      
+
     }
   };
 
-  private redireccionUsuario(isverified:boolean){
+  private redireccionUsuario(isverified: boolean) {
     if (isverified) {
       this.router.navigate(['/dashboard'])
       this.presentToast('Bienvenido ')
-      
-    }else {
+
+    } else {
       this.router.navigate(['/home'])
       this.presentToast('Debe verificar su correo electronico ')
     }
