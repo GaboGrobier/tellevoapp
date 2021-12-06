@@ -4,3 +4,12 @@ export interface User {
     displayName:string;
     emailVerified:boolean
   };
+  export interface DatoUsuarios {
+    uid:string;
+    nombre:string;
+    apellido:string;
+    correo:string;
+    password:string;
+    perfil:'alumno'|'admintrador'
+    emailVerified:boolean
+  };

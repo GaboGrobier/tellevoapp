@@ -1,8 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 import { LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import * as Leaflet from 'leaflet';
+import {  OnDestroy } from '@angular/core';
+import { antPath } from 'leaflet-ant-path';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -11,47 +16,55 @@ import { AlertController } from '@ionic/angular';
 })
 
 export class DashboardPage implements OnInit {
-  @ViewChild('map') mapView: ElementRef;
-  user: any;
-  constructor(private activeroute:ActivatedRoute, private router:Router, public loadingController:LoadingController,public alertController: AlertController) {
-    this.activeroute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.user=this.router.getCurrentNavigation().extras.state.user;
-        
-      }
-    });
-   }
-
-  ionViewDidEnter(){
-    this,this.createmap()
-
-  }
-  createmap(){
-    const boundingRect = this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
-    CapacitorGoogleMaps.create({
-      width: Math.round(boundingRect.width),
-      height: Math.round(boundingRect.width),
-      x: Math.round(boundingRect.x),
-      y:Math.round(boundingRect.y),
-      zoom:5,
-    });
-    CapacitorGoogleMaps.addListener('onMapReady',async () => {
-      CapacitorGoogleMaps.setMapType({
-        type:'normal'
-
-      })
-
-    })
-  }
-  
   
 
+  map:any;
 
-  ngOnInit() {
+  constructor(private activeroute:ActivatedRoute, private router:Router, public loadingController:LoadingController,public alertController: AlertController,private afs:AngularFirestore) {
+    
+
   }
+  ngOnInit() {}
+
+  ionViewDidEnter() { this.leafletMap(); }
+
+  leafletMap() {
+    this.map = Leaflet.map('mapId').setView([28.644800, 77.216721], 5);
+    Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'edupala.com © Angular LeafLet',
+    }).addTo(this.map);
+
+    Leaflet.marker([28.6, 77]).addTo(this.map).bindPopup('Delhi').openPopup();
+    Leaflet.marker([34, 77]).addTo(this.map).bindPopup('Leh').openPopup();
+
+    antPath([[28.644800, 77.216721], [34.1526, 77.5771]],
+      { color: '#FF0000', weight: 5, opacity: 0.6 })
+      .addTo(this.map);
+  }
+
+  /** Remove map when we have multiple map object */
+  ngOnDestroy() {
+    this.map.remove();
+  }
+
+
+
   cargando(){
     this.presentLoadingWithOptions() 
   }
+
+
+  ngAfterViewInit() {
+
+    this.map = new Leaflet.Map("map").setView([-25.429397, -49.271165], 10);
+    Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: 'Map Test'
+        }).addTo(this.map);
+
+}
+
+
+
   async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -78,7 +91,5 @@ export class DashboardPage implements OnInit {
    this.presentAlert()
    return;
 
-    
   }
-
-}
+  }

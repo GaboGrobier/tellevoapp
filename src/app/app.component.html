@@ -1,3 +1,53 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane contentId="main">
+    <!--  the side menu  -->
+    <ion-menu contentId="main">
+      <ion-header>
+        <ion-toolbar>
+          <ion-list-header>
+            <strong>Menu</strong>
+          </ion-list-header>
+            <ion-menu-toggle>
+              <ion-item detail="true" [routerLink]="['/home']">
+                <ion-icon name="desktop-outline"></ion-icon>
+                <ion-label>Inicio</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          
+            <ion-menu-toggle *ngif="rol == admin">
+              <ion-item  detail="true" [routerLink]="['/registro']">
+                <ion-icon name="add-outline"></ion-icon>
+                <ion-label>Registro</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          
+            <ion-menu-toggle *ngif="login == false">            
+              <ion-item  detail="true" [routerLink]="['/login']">
+                <ion-icon name="finger-print-outline"></ion-icon>
+                <ion-label>Login</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          
+            <ion-menu-toggle *ngif="login == false">
+              <ion-item  detail="true" [routerLink]="['/dashboard']">
+                <ion-icon name="people-outline"></ion-icon>
+                <ion-label>Perfil</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          
+            <ion-menu-toggle >
+              <ion-item  detail="true" (click)="exit()">
+               <ion-icon name="exit-outline"></ion-icon>
+               <ion-label>Salir</ion-label>
+             </ion-item>
+            </ion-menu-toggle>
+            
+  
+        </ion-toolbar>
+      </ion-header>
+    </ion-menu>
+  
+    <!-- the main content -->
+    <ion-router-outlet id="main"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

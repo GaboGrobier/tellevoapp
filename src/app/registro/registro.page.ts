@@ -26,24 +26,28 @@ export class RegistroPage implements OnInit {
 
 
   usuarioDB={
+    uid:"",
     nombre:"",
     apelldio:"",
     email:"",
     password:"",
+    perfil:"alumno"
   }
 
 
   registro(){
-      this.database.crearUsuario('usuarios', this.usuarioDB);
+      this.database.crearUsuario('UsuarioAlumno', this.usuarioDB);
     this.presentToast( 'Estimado '+ this.usuarioDB.nombre + ' '+ this.usuarioDB.apelldio + ' usuario registrado verifique su correo '+ this.usuarioDB.email )    
   }
    async authRegistro(email, password ){
     try {
       const user = await  this.database.crearAuth(this.usuarioDB.email,this.usuarioDB.password)
-      this.registro();
+      
 
       if (user) {
         //verificar email 
+        this.usuarioDB.uid=user.uid;
+        this.registro();
       }
     } catch (error) {
       console.log('Error ---> ', error)

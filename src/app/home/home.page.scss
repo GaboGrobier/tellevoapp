@@ -25,3 +25,20 @@
 #container a {
   text-decoration: none;
 }
+
+ion-card.card01{
+  font-size: large;
+  text-align: center;
+  color:black;
+  border-style:groove;
+  border-radius: 10%;
+  margin-top: 5vh;
+  font-family: 'Courier New', Courier, monospace;
+}
+img.logo{
+  width: 150px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}

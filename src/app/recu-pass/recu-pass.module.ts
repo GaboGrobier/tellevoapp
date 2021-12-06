@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RecuPassPageRoutingModule } from './recu-pass-routing.module';
 
 import { RecuPassPage } from './recu-pass.page';
-import { ComponetsModule } from '../componets/componets.module';
+import { ComponentsModule } from '../componets/components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { ComponetsModule } from '../componets/componets.module';
     FormsModule,
     IonicModule,
     RecuPassPageRoutingModule,
-    ComponetsModule
+    ComponentsModule
   ],
   declarations: [RecuPassPage]
 })

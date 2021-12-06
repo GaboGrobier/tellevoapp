@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { InteraccionUsuarioService } from '../service/interaccion-usuario.service';
 import { ServiceService } from '../service/service.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { ServiceService } from '../service/service.service';
 export class LoginPage implements OnInit {
 
   user: string;
-  constructor(public toastController: ToastController, private router: Router, private database: ServiceService) { }
+  constructor(public interaccion:InteraccionUsuarioService, private router: Router, private database: ServiceService) { }
 
   ngOnInit() { }
 
@@ -31,17 +32,10 @@ export class LoginPage implements OnInit {
 
     };
     this.router.navigate(['/dashboard'], navigationExtras);
-    this.presentToast("bienvenido " + this.user);
+    this.interaccion.presentToast("bienvenido " + this.user);
 
   }
 
-  async presentToast(msg: string) {
-    const toast = await this.toastController.create({
-      message: msg,
-      duration: 2000
-    });
-    toast.present();
-  }
 
   async ingresar(email, password) {
     try {
@@ -49,10 +43,12 @@ export class LoginPage implements OnInit {
         if (user) {
           const isverified = this.database.isEmailVerified(user);
           this.redireccionUsuario(isverified);
+          
         }
 
     } catch (error) {
       console.log('Error -->', error)
+      this.interaccion.presentToast('Error de usuario o contraseña ')
 
     }
   };
@@ -63,6 +59,7 @@ export class LoginPage implements OnInit {
       if (user) {
         const isverified = this.database.isEmailVerified(user);
         this.redireccionUsuario(isverified);
+        
       }
     } catch (error) {
       console.log('Error --->', error)
@@ -73,11 +70,11 @@ export class LoginPage implements OnInit {
   private redireccionUsuario(isverified: boolean) {
     if (isverified) {
       this.router.navigate(['/dashboard'])
-      this.presentToast('Bienvenido ')
+      this.interaccion.presentToast('Bienvenido ')
 
     } else {
       this.router.navigate(['/home'])
-      this.presentToast('Debe verificar su correo electronico ')
+      this.interaccion.presentToast('Debe verificar su correo electronico ')
     }
   }
 

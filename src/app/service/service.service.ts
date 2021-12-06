@@ -124,11 +124,16 @@ async resetpassword (email):Promise<void>{
    return userRef.set(data, {merge:true});  
  }
 
+estadoUsuario(){
+  return this.afauth.authState
+};
+
+
 
 }
+
 
 
 function switchmap(switchmap: any) {
   throw new Error('Function not implemented.');
 }
-
