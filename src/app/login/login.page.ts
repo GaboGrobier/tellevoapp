@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
       state: { user: this.user }
 
     };
-    this.router.navigate(['/dashboard'], navigationExtras);
+    this.router.navigate(['/mapas'], navigationExtras);
     this.interaccion.presentToast("bienvenido " + this.user);
 
   }
@@ -69,7 +69,7 @@ export class LoginPage implements OnInit {
 
   private redireccionUsuario(isverified: boolean) {
     if (isverified) {
-      this.router.navigate(['/dashboard'])
+      this.router.navigate(['/mapas'])
       this.interaccion.presentToast('Bienvenido ')
 
     } else {
@@ -77,7 +77,5 @@ export class LoginPage implements OnInit {
       this.interaccion.presentToast('Debe verificar su correo electronico ')
     }
   }
-
-
 
 }

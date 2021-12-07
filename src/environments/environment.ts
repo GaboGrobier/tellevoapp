@@ -12,13 +12,10 @@ export const environment = {
     authDomain: 'tellevoapp-9c7e4.firebaseapp.com',
     messagingSenderId: '215487575149',
   },
+  mapPK:'pk.eyJ1IjoiZ2Fib2dyb2JpZXIiLCJhIjoiY2t3dmNrd284MXl2eTJ3anZhNTF6c2FhbyJ9.6N9xy5sJTiztgfC9yfOxXA',
   production: true
 };
 
-export const googlemaps={
-  production: false,
-  mapsKey:'AIzaSyDNH-IsfCHFrTwDW8_MroKuMdD2LRb2LSw'
-}
 
 /*
  * For easier debugging in development mode, you can import the following file

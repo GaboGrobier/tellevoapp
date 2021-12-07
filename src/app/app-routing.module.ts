@@ -24,11 +24,13 @@ const routes: Routes = [
     path: 'recu-pass',
     loadChildren: () => import('./recu-pass/recu-pass.module').then( m => m.RecuPassPageModule)
   },
+ 
   {
-    path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule),
+    path: 'mapas',
+    loadChildren: () => import('./mapas/mapas.module').then( m => m.MapasPageModule),
     canActivate:[GuardGuard],
   },
+
 ];
 
 @NgModule({

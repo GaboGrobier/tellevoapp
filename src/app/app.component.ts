@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
-import { environment, googlemaps } from '../environments/environment';
 import { InteraccionUsuarioService } from './service/interaccion-usuario.service';
 import { ServiceService } from './service/service.service';
 
@@ -31,6 +29,6 @@ export class AppComponent {
     this.interaccion.presentToast('se ha cerrado sesion con exito ')
     this.route.navigate(['/login'])
   }
-  
+
 
 }
