@@ -26,7 +26,7 @@ export class RegistroPage implements OnInit {
 
 
   usuarioDB={
-    uid:"",
+    uid:'',
     nombre:"",
     apelldio:"",
     email:"",

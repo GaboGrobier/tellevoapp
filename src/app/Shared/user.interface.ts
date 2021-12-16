@@ -4,12 +4,18 @@ export interface User {
     displayName:string;
     emailVerified:boolean
   };
-  export interface DatoUsuarios {
-    uid:string;
-    nombre:string;
-    apellido:string;
-    correo:string;
-    password:string;
-    perfil:'alumno'|'admintrador'
-    emailVerified:boolean
+  export interface usuarioDB  {
+      nombre:"",
+      apelldio:"",
+      email:"",
+      password:"",
+      perfil:"alumno"
   };
+  export interface ViajeConductor{
+      uid: string,
+      correo: string,
+      fecha: Date,
+      destino: string,
+    
+  };
+  

@@ -1,0 +1,37 @@
+
+<app-header titulo="Generar Viaje "></app-header>
+
+<app-banner textobanner="Bienenido conductor favor de disponibilizar tu viaje "></app-banner>
+
+<ion-content>
+
+  <ion-item lines="full">
+    <ion-label position="floating">Correo</ion-label>
+    <ion-input type="email" [(ngModel)]="newDatosViaje.correo" required></ion-input>
+  </ion-item>
+ <!--  <ion-item lines="full">
+    <ion-label >Fecha</ion-label>
+    <ion-input type="date" [(ngModel)]="DatosViaje.fecha" required></ion-input>
+  </ion-item> -->
+  <ion-item lines="full">
+    <ion-label position="floating">destino</ion-label>
+    <ion-input type="text" [(ngModel)]="newDatosViaje.destino" required></ion-input>
+  </ion-item>
+<!--   <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="newDatosViaje.fecha"></ion-datetime>
+  </ion-item>
+</ion-content> -->
+
+<ion-content>
+  <ion-item>
+        <ion-button  [routerLink]="['#']"  (click)="crearViaje()"  type="submit" color="danger" expand="block" >Guardar Direccion</ion-button>
+  </ion-item> 
+  <ion-item>
+    <ion-button  [routerLink]="['/menu']"   type="submit" color="primary" expand="block" >Volver</ion-button>
+</ion-item>
+</ion-content>
+
+  
+
+

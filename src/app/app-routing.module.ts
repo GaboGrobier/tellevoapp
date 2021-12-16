@@ -30,6 +30,20 @@ const routes: Routes = [
     loadChildren: () => import('./mapas/mapas.module').then( m => m.MapasPageModule),
     canActivate:[GuardGuard],
   },
+  {
+    path: 'conductor',
+    loadChildren: () => import('./conductor/conductor.module').then( m => m.ConductorPageModule)
+  },
+  {
+    path: 'pasajero',
+    loadChildren: () => import('./pasajero/pasajero.module').then( m => m.PasajeroPageModule)
+  },  {
+    path: 'menu',
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+  },
+
+  
+
 
 ];
 

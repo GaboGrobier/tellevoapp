@@ -1,0 +1,21 @@
+
+<app-header titulo="Menu Te Llevo App  "></app-header>
+
+<app-banner textobanner="Bienvenido por favor seleccion la accion que desea realizar  "></app-banner>
+
+
+
+<ion-content class="auth-form">
+  <ion-card >
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-center>
+        <ion-button [routerLink]="['/pasajero']" expand="block" color="primary">Soy Pasajero</ion-button>
+        <hr>
+        <hr>
+        <ion-button [routerLink]="['/conductor']" expand="block" color="danger">Soy Conductor</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+</ion-content>

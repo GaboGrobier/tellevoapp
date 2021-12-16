@@ -69,7 +69,7 @@ export class LoginPage implements OnInit {
 
   private redireccionUsuario(isverified: boolean) {
     if (isverified) {
-      this.router.navigate(['/mapas'])
+      this.router.navigate(['/menu'])
       this.interaccion.presentToast('Bienvenido ')
 
     } else {

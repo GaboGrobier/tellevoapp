@@ -1,0 +1,25 @@
+<app-header titulo="Bienvenido a Te LLevo App  "></app-header>
+
+<app-banner textobanner="Favor Seleccione un viaje de los disponibles en el listado a continuacion  "></app-banner>
+<ion-content>
+  
+<ion-item *ngFor="let infoviajes of viajes">
+    <ion-label>{{infoviajes.destino}}</ion-label> <br>
+    <ion-label>{{infoviajes.fecha}}</ion-label> <br>
+    <ion-button  [routerLink]="['#']"   type="submit" color="primary" expand="block" >Reservar</ion-button><br> 
+</ion-item>
+
+<ion-item>
+    <ion-col>
+        <ion-button type="submit" (click)="ObtenerinfoViaje()"  color="danger" expand="block">Actualizar</ion-button>
+    </ion-col>
+</ion-item>
+<ion-item>
+    <ion-button  [routerLink]="['/menu']"   type="submit" color="primary" expand="block" >Volver</ion-button>
+</ion-item>
+<ion-item>
+    <ion-button  [routerLink]="['/mapas']"   type="submit" color="primary" expand="block" >Calcular ruta</ion-button>
+</ion-item>
+
+
+</ion-content>

@@ -18,6 +18,7 @@ export class RecuPassPage implements OnInit {
 async EnviarCorreo(email){
   try {
     await this.database.resetpassword(email.value);
+    console.log(email.value);
     this.router.navigate(['/home'])
     this.presentToast('Enlace enviado ')
   } catch (error) {

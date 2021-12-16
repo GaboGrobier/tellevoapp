@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {AngularFirestore,AngularFirestoreDocument} from '@angular/fire/compat/firestore';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { getIdToken, GoogleAuthProvider } from 'firebase/auth';
 import { Observable, of } from 'rxjs';
 import { User } from '../Shared/user.interface';
 import {switchMap} from 'rxjs/operators'
@@ -32,6 +32,21 @@ export class ServiceService {
   }
   
 
+  obtenerDatosViaje(path:string, id: string){
+    const coleccion = this.firestore.collection(path)
+    return coleccion.doc(id).valueChanges();
+  }
+
+  ObtenerColeccion<tipo>(path:string){
+    const colecionDB =this.firestore.collection<tipo>(path);
+    return colecionDB.valueChanges();
+  }
+  
+
+
+  CrearID(){
+    return this.firestore.createId();
+  }
 
 
   async crearUsuario(coleccion,dato){
@@ -47,6 +62,15 @@ export class ServiceService {
   return user.emailVerified === true ? true: false; 
 }
 
+
+async guardarviaje(coleccion,dato){
+  try {
+    return await this.firestore.collection(coleccion).add(dato);
+  } catch (error) {
+    console.log('error --->', error) 
+  }
+
+}
 
 
 
@@ -94,7 +118,15 @@ async resetpassword (email):Promise<void>{
   }
 }
 
-
+  async getid(){
+  const user = await this.afauth.currentUser;
+  if (user) {
+    return user.uid;
+    
+  }else{
+    console.log('error ---> en getid')
+  }
+}
 
  async logout(): Promise<void>{
    try {
@@ -128,12 +160,10 @@ estadoUsuario(){
   return this.afauth.authState
 };
 
-
-
 }
-
 
 
 function switchmap(switchmap: any) {
   throw new Error('Function not implemented.');
 }
+
